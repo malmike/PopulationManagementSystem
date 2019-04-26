@@ -5,6 +5,14 @@ import { Response, NextFunction} from 'express';
 import { IRequest } from '../express';
 
 export default class UserAuthentication{
+  /**
+   * @swagger
+   * securityDefinitions:
+   *   api_key:
+   *     type: "apiKey"
+   *     name: "x-access-token"
+   *     in: "header"
+   */
   userAuth(req: IRequest, res: Response, next: NextFunction){
     var token = req.headers['x-access-token'];
     if(token){
