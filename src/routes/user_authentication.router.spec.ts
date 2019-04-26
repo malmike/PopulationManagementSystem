@@ -54,5 +54,17 @@ describe('UserAuthenticationRoutes', function () {
           done();
         })
     });
+
+    it('should get signed in user get user', (done) => {
+      agent.get('/getUser')
+        .set('x-access-token', token)
+        .expect(200)
+        .end((err, response) => {
+          expect(err).to.be.null;
+          expect(response.body.password).to.equal(undefined);
+          expect(response.body.email).to.equal('malmike21@gmail.com');
+          done()
+        })
+    })
   })
 });
