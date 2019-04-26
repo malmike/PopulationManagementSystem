@@ -2,6 +2,8 @@ import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
 import {UserModel, User} from '../models/user.model';
 import config from '../app_configurations/config';
+import UserAuthentication from '../middleWare/user_authentication.middleware';
+import { IRequest } from '../express';
 import * as bcrypt from 'bcrypt';
 
 export default class UserAuthenticationRoutes{
@@ -84,5 +86,14 @@ export default class UserAuthenticationRoutes{
     }
     res.status(201);
     res.send(message);
+  }
+
+  getUser(): express.Router{
+    this.router.use(new UserAuthentication().userAuth);
+    this.router.get('/getUser', async (req: IRequest, res) => {
+      req.user.password = undefined;
+      res.status(200).send(req.user);
+    })
+    return this.router;
   }
 }
