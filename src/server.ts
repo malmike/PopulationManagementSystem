@@ -6,6 +6,7 @@ import ApiDocumentation from './app_configurations/api_documentation';
 import { Utilities } from './utilities/utilities';
 import config from './app_configurations/config';
 
+import LocationRoutes from './routes/location.router';
 import UserAuthenticationRoutes from './routes/user_authentication.router';
 
 
@@ -17,10 +18,12 @@ import UserAuthenticationRoutes from './routes/user_authentication.router';
 export default class ServerSetup{
   app = express();
   private apiDocumentation: ApiDocumentation;
+  private locationRoutes: LocationRoutes;
   private userAuthenticationRoutes: UserAuthenticationRoutes;
 
   constructor(){
     this.apiDocumentation = new ApiDocumentation();
+    this.locationRoutes = new LocationRoutes();
     this.userAuthenticationRoutes = new UserAuthenticationRoutes();
   }
 
@@ -39,6 +42,11 @@ export default class ServerSetup{
     this.app.use(this.apiDocumentation.swaggerDocumentation());
     this.app.use(this.userAuthenticationRoutes.userSignUp());
     this.app.use(this.userAuthenticationRoutes.getUser());
+    this.app.use(this.locationRoutes.addLocation());
+    this.app.use(this.locationRoutes.getLocations());
+    this.app.use(this.locationRoutes.getLocationRoute());
+    this.app.use(this.locationRoutes.addSubLocation());
+    this.app.use(this.locationRoutes.deleteSubLocation());
     this.app.listen( port, function ()
     {
       console.log( 'Running on port: ' + port );
