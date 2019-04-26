@@ -38,6 +38,7 @@ export default class ServerSetup{
     })
     this.app.use(this.apiDocumentation.swaggerDocumentation());
     this.app.use(this.userAuthenticationRoutes.userSignUp());
+    this.app.use(this.userAuthenticationRoutes.getUser());
     this.app.listen( port, function ()
     {
       console.log( 'Running on port: ' + port );
