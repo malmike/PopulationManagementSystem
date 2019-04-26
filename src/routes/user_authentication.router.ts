@@ -11,6 +11,37 @@ export default class UserAuthenticationRoutes{
     this.router = express.Router();
   }
 
+  /**
+   * @swagger
+   * /registerUser:
+   *  post:
+   *    tags:
+   *      - "User"
+   *    description: "Register new user or sign in existing user"
+   *    consumes:
+   *      - "application/json"
+   *    produces:
+   *       - "application/json"
+   *    parameters:
+   *    - in: "body"
+   *      name: "body"
+   *      description: "Register/ Sign In user"
+   *      required: true
+   *      schema:
+   *        $ref: "#/definitions/User"
+   *    responses:
+   *      201:
+   *        description: "successful operation"
+   *        schema:
+   *          $ref: "#/definitions/SignedInUser"
+   *      500:
+   *        description: "server error"
+   *      400:
+   *        description: "Email already attached to different account"
+   *        schema:
+   *          $ref: "#/definitions/ResponseMessage"
+   *
+   */
   userSignUp(): express.Router{
     this.router.post('/registerUser', async (req, res) => {
       const userData = req.body as User;
