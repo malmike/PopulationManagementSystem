@@ -88,6 +88,30 @@ export default class UserAuthenticationRoutes{
     res.send(message);
   }
 
+  /**
+   * @swagger
+   * /getUser:
+   *  get:
+   *    tags:
+   *      - "User"
+   *    description: "Get user"
+   *    produces:
+   *      - "application/json"
+   *    responses:
+   *      200:
+   *        description: "User successfully retrieved"
+   *        schema:
+   *          $ref: '#/definitions/User'
+   *      401:
+   *        description: "Invalid token"
+   *        schema:
+   *          $ref: "#/definitions/ResponseMessage"
+   *      500:
+   *        description: "server error"
+   *    security:
+   *    - api_key: []
+   *
+   */
   getUser(): express.Router{
     this.router.use(new UserAuthentication().userAuth);
     this.router.get('/getUser', async (req: IRequest, res) => {
