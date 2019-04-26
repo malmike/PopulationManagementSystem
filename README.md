@@ -1,5 +1,8 @@
 # PopulationManagementSystem
 
+[![CircleCI](https://circleci.com/gh/malmike/PopulationManagementSystem.svg?style=svg)](https://circleci.com/gh/malmike/PopulationManagementSystem)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dbe64614cde498572286/maintainability)](https://codeclimate.com/github/malmike/PopulationManagementSystem/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dbe64614cde498572286/test_coverage)](https://codeclimate.com/github/malmike/PopulationManagementSystem/test_coverage)
 
 This is an poplutation management application built using NodeJS, Express and MongoDB
 
